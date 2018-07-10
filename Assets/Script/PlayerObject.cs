@@ -62,6 +62,11 @@ namespace Tir
             }
         }
 
+        //public void DDD()
+        //{
+        //    Debug.Log("ertert");
+        //}
+
         public void SetISNew()
         {
             isNew = false;
