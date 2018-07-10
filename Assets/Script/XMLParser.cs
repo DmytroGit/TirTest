@@ -5,5 +5,15 @@ using UnityEngine;
 
 public class XMLParser : MonoBehaviour
 {
-    XDocument casdasdasdasdc;
+    string path;
+
+    private void Awake()
+    {
+        path = Application.dataPath + "/File/DataXML.xml";
+    }
+
+    private void Start()
+    {
+        Debug.Log(path);
+    }
 }
