@@ -46,6 +46,20 @@ namespace Tir
                 //Destroy(other.gameObject);
                 other.gameObject.GetComponent<PlayerObject>().Death();
             }
+            if(other.gameObject.GetComponent<PlayerObject>().ePlayerObject != this.ePlayerObject)
+            {
+                isNew = false;
+
+                if(other.gameObject.GetComponent<PlayerObject>().isNew)
+                {
+                    return;
+                }
+
+                //Destroy(other.gameObject);
+                other.gameObject.GetComponent<Animator>().SetBool("fly", true);
+
+                other.gameObject.GetComponent<PlayerObject>().DeathAnimation();
+            }
         }
 
         public void SetISNew()
@@ -72,7 +86,21 @@ namespace Tir
             //{
             //   GameObject d =  Resources.Load<>("Cube");
             //}
+
         }
+
+        public void DeathAnimation()
+        {
+            StartCoroutine(IDeathAnimation());
+        }
+
+        public IEnumerator IDeathAnimation()
+        {
+            yield return new WaitForSeconds(2F);
+
+            Destroy(gameObject);
+        }
+
         public void Death()
         {
             StartCoroutine(IDeath());
