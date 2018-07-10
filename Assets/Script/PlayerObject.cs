@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Tir
 {
@@ -14,6 +15,8 @@ namespace Tir
         [HideInInspector]
         public bool isNew = true;
 
+        [SerializeField]
+        GameObject textObj;
 
         [SerializeField]
         int count = 0;
@@ -57,6 +60,10 @@ namespace Tir
 
                 //Destroy(other.gameObject);
                 other.gameObject.GetComponent<Animator>().SetBool("fly", true);
+                
+               GameObject x= Instantiate(textObj,  Vector3.zero,  Quaternion.identity) as GameObject;
+                x.transform.SetParent(GameObject.Find("Canvas").transform);
+
 
                 other.gameObject.GetComponent<PlayerObject>().DeathAnimation();
             }
@@ -87,10 +94,13 @@ namespace Tir
         //}
         private void Update()
         {
-            //if(Input.GetKeyDown(KeyCode.Space))
-            //{
-            //   GameObject d =  Resources.Load<>("Cube");
-            //}
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                //GameObject partidddcl =
+                // Instantiate(Resources.Load("TextWow"),
+                // gameObject.transform.position, Quaternion.identity) as UIElem;
+                
+            }
 
         }
 
@@ -128,6 +138,8 @@ namespace Tir
             GameObject  particl=    
                 Instantiate(Resources.Load("BomsbParticleSystem"),
                 gameObject.transform.position, Quaternion.identity) as GameObject;
+
+            
 
             particl.transform.SetParent(gameObject.transform);
                 //Debug.Log("2");
