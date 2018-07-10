@@ -8,8 +8,12 @@ namespace Tir
     {
         public EPlayerObject ePlayerObject;
 
+        [HideInInspector]
         public bool isNew = true;
 
+
+        [SerializeField]
+        int count = 0;
         //private void Awake()
         //{
         //    //BroadcastMessage("SetISNew");
@@ -36,8 +40,8 @@ namespace Tir
                     return;
                 }
 
-                Destroy(other.gameObject);
-                //other.gameObject.GetComponent<PlayerObject>().Death();
+                //Destroy(other.gameObject);
+                other.gameObject.GetComponent<PlayerObject>().Death();
             }
         }
 
@@ -62,7 +66,20 @@ namespace Tir
 
         public void Death()
         {
-            //Destroy(other.gameObject);
+            StartCoroutine(IDeath());
+        }
+
+        public IEnumerator IDeath()
+        {
+            GetComponent<AudioSource>().Play();
+
+            Destroy(GetComponent<Collider>());
+            //Destroy(GetComponent<PlayerObject>());
+            Destroy(GetComponent<MeshRenderer>());
+
+            yield return new WaitForSeconds(0.8F);
+
+            Destroy(gameObject);
         }
     }
 
