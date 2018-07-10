@@ -6,6 +6,9 @@ namespace Tir
 {
     public class PlayerObject : MonoBehaviour
     {
+        [SerializeField]
+        GameObject partile;
+
         public EPlayerObject ePlayerObject;
 
         [HideInInspector]
@@ -63,7 +66,13 @@ namespace Tir
         //        collision.gameObject.GetComponent<PlayerObject>().Death();
         //    }
         //}
-
+        private void Update()
+        {
+            //if(Input.GetKeyDown(KeyCode.Space))
+            //{
+            //   GameObject d =  Resources.Load<>("Cube");
+            //}
+        }
         public void Death()
         {
             StartCoroutine(IDeath());
@@ -78,6 +87,8 @@ namespace Tir
             Destroy(GetComponent<Collider>());
             //Destroy(GetComponent<PlayerObject>());
             Destroy(GetComponent<MeshRenderer>());
+
+            GameObject.Instantiate(partile);
 
             yield return new WaitForSeconds(0.5F);
 
