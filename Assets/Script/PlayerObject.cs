@@ -8,7 +8,7 @@ namespace Tir
     {
         public EPlayerObject ePlayerObject;
 
-      public  bool isNew = true;
+        public bool isNew = true;
 
         //private void Awake()
         //{
@@ -21,6 +21,12 @@ namespace Tir
             {
                 return;
             }
+
+            if(other.gameObject.GetComponent<PlayerObject>())
+            {
+                return;
+            }
+
             if(other.gameObject.GetComponent<PlayerObject>().ePlayerObject == this.ePlayerObject)
             {
                 isNew = false;
@@ -43,7 +49,7 @@ namespace Tir
 
         //private void OnCollisionEnter(Collision collision)
         //{
-            
+
         //}
 
         //private void OnCollisionStay(Collision collision)
