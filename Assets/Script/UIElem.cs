@@ -10,11 +10,8 @@ namespace Tir
         [SerializeField]
         Text text;
 
-
         void Update()
         {
-            
-
             text.text = DataStatic.CountUser.ToString();
         }
     }
