@@ -9,7 +9,7 @@ namespace Tir
         [SerializeField]
         Transform transformGameObj;
 
-        public void CreateObject(GameObject gameObject/*, GameObject GameObjectff*/)
+        public void CreateObject(GameObject gameObject)
         {
             Instantiate(gameObject, transformGameObj.transform.position, Quaternion.identity);
         }
