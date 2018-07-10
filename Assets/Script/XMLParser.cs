@@ -1,19 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml.Linq;
 using UnityEngine;
 
-public class XMLParser : MonoBehaviour
+namespace Tir
 {
-    string path;
-
-    private void Awake()
+    public class XMLParser : MonoBehaviour
     {
-        path = Application.dataPath + "/File/DataXML.xml";
-    }
+        string path;
 
-    private void Start()
-    {
-        Debug.Log(path);
+        private void Awake()
+        {
+            path = Application.dataPath + "/File/DataXML.xml";
+        }
+
+        private void Start()
+        {
+            Debug.Log(path);
+            Load();
+        }
+
+        public void Load()
+        {
+            XElement root = null;
+
+            if(!File.Exists(path))
+            {
+                return;
+            }
+            else
+            {
+                root = XDocument.Parse(File.ReadAllText(path)).Element("root");
+
+                Debug.Log(root);
+            }
+        }
     }
 }
