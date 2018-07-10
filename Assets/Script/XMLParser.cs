@@ -17,7 +17,7 @@ namespace Tir
 
         private void Start()
         {
-            Debug.Log(path);
+            //Debug.Log(path);
             Load();
         }
 
@@ -32,8 +32,20 @@ namespace Tir
             else
             {
                 root = XDocument.Parse(File.ReadAllText(path)).Element("root");
+                Generate(root);
+                //Debug.Log(root);
+            }
+        }
 
-                Debug.Log(root);
+        public void Generate(XElement root)
+        {
+            foreach(XElement instance in root.Elements("type"))
+            {
+                int x = int.Parse(instance.Attribute("count").Value);
+
+                string s = instance.Value;
+
+                Debug.Log(x + " - " + s + " **** ");
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <type count="1234">cube</type>
-  <type count="5678">sphere</type>
+  <type count="1234">Cube</type>
+  <type count="5678">Sphere</type>
 </root>
