@@ -22,7 +22,7 @@ namespace Tir
                 return;
             }
 
-            if(other.gameObject.GetComponent<PlayerObject>())
+            if(!other.gameObject.GetComponent<PlayerObject>())
             {
                 return;
             }
