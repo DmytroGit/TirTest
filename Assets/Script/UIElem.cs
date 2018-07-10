@@ -13,6 +13,8 @@ namespace Tir
 
         void Update()
         {
+            
+
             text.text = DataStatic.CountUser.ToString();
         }
     }

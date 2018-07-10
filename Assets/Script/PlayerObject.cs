@@ -88,9 +88,19 @@ namespace Tir
             //Destroy(GetComponent<PlayerObject>());
             Destroy(GetComponent<MeshRenderer>());
 
-            GameObject.Instantiate(partile);
+            /*if(Input.GetKeyDown(KeyCode.Space))
+            {*/
+                //Debug.Log("1");
 
-            yield return new WaitForSeconds(0.5F);
+            GameObject  particl=    
+                Instantiate(Resources.Load("BomsbParticleSystem"),
+                gameObject.transform.position, Quaternion.identity) as GameObject;
+
+            particl.transform.SetParent(gameObject.transform);
+                //Debug.Log("2");
+           /* }*/
+
+            yield return new WaitForSeconds(/*0.*/5F);
 
             Destroy(gameObject);
         }
