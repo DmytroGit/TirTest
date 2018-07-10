@@ -10,6 +10,5 @@ namespace Tir
         {
             Instantiate(gameObject/*, GameObjectff.transform*/);
         }
-
     }
 }

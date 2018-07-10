@@ -71,13 +71,15 @@ namespace Tir
 
         public IEnumerator IDeath()
         {
+            DataStatic.SetCountUser(count);
+
             GetComponent<AudioSource>().Play();
 
             Destroy(GetComponent<Collider>());
             //Destroy(GetComponent<PlayerObject>());
             Destroy(GetComponent<MeshRenderer>());
 
-            yield return new WaitForSeconds(0.8F);
+            yield return new WaitForSeconds(0.5F);
 
             Destroy(gameObject);
         }
