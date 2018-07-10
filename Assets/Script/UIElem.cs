@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIElem : MonoBehaviour
+namespace Tir
 {
-    [SerializeField]
-    Text text;
-    
-
-    void Update()
+    public class UIElem : MonoBehaviour
     {
-        text.text = 10;
+        [SerializeField]
+        Text text;
+
+
+        void Update()
+        {
+            text.text = DataStatic.CountUser.ToString();
+        }
     }
 }

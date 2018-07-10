@@ -8,6 +8,12 @@ namespace Tir
     {
         static int countUser = 0;
 
+        public static int CountUser
+        {
+            get { return countUser; }
+        }
+
+
         public static void SetCountUser(int count)
         {
             countUser += count;
