@@ -82,22 +82,22 @@ namespace Tir
             Spawn.GetComponent<Spawner>().SetText(x);
 
             //выбираем что  будем спавнером генерить
-            if(s == "Cube")
+            if(s == EPlayerObject.Cube.ToString())
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Cube;
                 Spawn.GetComponent<Spawner>().count = x;
             }
-            if(s == "Capsule")
+            if(s == EPlayerObject.Capsule.ToString())
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Capsule;
                 Spawn.GetComponent<Spawner>().count = x;
             }
-            if(s == "Cylinder")
+            if(s == EPlayerObject.Cylinder.ToString())
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Cylinder;
                 Spawn.GetComponent<Spawner>().count = x;
             }
-            if(s == "Sphere")
+            if(s == EPlayerObject.Sphere.ToString())
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Sphere;
                 Spawn.GetComponent<Spawner>().count = x;
