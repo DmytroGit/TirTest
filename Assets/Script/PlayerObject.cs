@@ -19,11 +19,16 @@ namespace Tir
         GameObject textObj;
 
         [SerializeField]
-        int count = 0;
+        int count = 1;
         //private void Awake()
         //{
         //    //BroadcastMessage("SetISNew");
         //}
+
+        public void SetCount(int c)
+        {
+            count = c;
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -60,8 +65,8 @@ namespace Tir
 
                 //Destroy(other.gameObject);
                 other.gameObject.GetComponent<Animator>().SetBool("fly", true);
-                
-               GameObject x= Instantiate(textObj,  Vector3.zero,  Quaternion.identity) as GameObject;
+
+                GameObject x = Instantiate(textObj, Vector3.zero, Quaternion.identity) as GameObject;
                 x.transform.SetParent(GameObject.Find("Canvas").transform);
 
 
@@ -99,7 +104,7 @@ namespace Tir
                 //GameObject partidddcl =
                 // Instantiate(Resources.Load("TextWow"),
                 // gameObject.transform.position, Quaternion.identity) as UIElem;
-                
+
             }
 
         }
@@ -124,7 +129,7 @@ namespace Tir
         public IEnumerator IDeath()
         {
             DataStatic.SetCountUser(count);
-
+            Debug.Log("456456");
             GetComponent<AudioSource>().Play();
 
             Destroy(GetComponent<Collider>());
@@ -133,17 +138,17 @@ namespace Tir
 
             /*if(Input.GetKeyDown(KeyCode.Space))
             {*/
-                //Debug.Log("1");
+            //Debug.Log("1");
 
-            GameObject  particl=    
+            GameObject particl =
                 Instantiate(Resources.Load("BomsbParticleSystem"),
                 gameObject.transform.position, Quaternion.identity) as GameObject;
 
-            
+
 
             particl.transform.SetParent(gameObject.transform);
-                //Debug.Log("2");
-           /* }*/
+            //Debug.Log("2");
+            /* }*/
 
             yield return new WaitForSeconds(/*0.*/5F);
 

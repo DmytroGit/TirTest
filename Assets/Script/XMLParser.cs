@@ -62,18 +62,22 @@ namespace Tir
             if(s == "Cube")
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Cube;
+                Spawn.GetComponent<Spawner>().count = x;
             }
             if(s == "Capsule")
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Capsule;
+                Spawn.GetComponent<Spawner>().count = x;
             }
             if(s == "Cylinder")
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Cylinder;
+                Spawn.GetComponent<Spawner>().count = x;
             }
             if(s == "Sphere")
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Sphere;
+                Spawn.GetComponent<Spawner>().count = x;
             }
 
             Spawn.transform.SetParent(GameObject.Find("Canvas").transform);

@@ -22,9 +22,13 @@ namespace Tir
         [SerializeField]
         Button button;
 
+        [SerializeField]
+        public int count;
+
         private void Awake()
         {
-            button.onClick.AddListener(() => CreateSpawn());
+            gameObjectTramsform = GameObject.Find("CenterPoint");
+            button.onClick.AddListener(() => CreateSpawn(count));
         }
 
         public void SetText(int s)
@@ -43,25 +47,29 @@ namespace Tir
         /// <summary>
         /// Генерит UI 
         /// </summary>
-        public void CreateSpawn(/*GameObject gameObject*/)
+        public void CreateSpawn(int c)
         {
-            //GameObject loadGameObject;
+            GameObject loadGameObject;
 
             if(ePlayerObject == EPlayerObject.Cube)
             {
-                Instantiate(Resources.Load("Cube"), gameObjectTramsform. transform.position, Quaternion.identity);
+                loadGameObject = Instantiate(Resources.Load("Cube"), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
+                loadGameObject.GetComponent<PlayerObject>().SetCount(c);
             }
             if(ePlayerObject == EPlayerObject.Capsule)
             {
-                Instantiate(Resources.Load("Capsule"), gameObjectTramsform.transform.position, Quaternion.identity);
+                loadGameObject = Instantiate(Resources.Load("Capsule"), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
+                loadGameObject.GetComponent<PlayerObject>().SetCount(c);
             }
             if(ePlayerObject == EPlayerObject.Cylinder)
             {
-                Instantiate(Resources.Load("Cylinder"), gameObjectTramsform.transform.position, Quaternion.identity);
+                loadGameObject = Instantiate(Resources.Load("Cylinder"), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
+                loadGameObject.GetComponent<PlayerObject>().SetCount(c);
             }
             if(ePlayerObject == EPlayerObject.Sphere)
             {
-                Instantiate(Resources.Load("Sphere"), gameObjectTramsform.transform.position, Quaternion.identity);
+                loadGameObject = Instantiate(Resources.Load("Sphere"), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
+                loadGameObject.GetComponent<PlayerObject>().SetCount(c);
             }
         }
     }

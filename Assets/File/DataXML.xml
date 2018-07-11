@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <type count="1234">Cube</type>
-  <type count="5678">Sphere</type>
+  <type count="1">Cube</type>
+  <type count="10">Sphere</type>
+  <type count="500">Capsule</type>
+  <type count="6000">Sphere</type>
 </root>
