@@ -136,23 +136,28 @@ namespace Tir
             //зачсляем очки
             DataStatic.SetCountUser(count);
 
+            //берем то чем воспроизводим звук
             GetComponent<AudioSource>().Play();
 
+            //удаляем коллайдер
             Destroy(GetComponent<Collider>());
 
+            //удаляем меш (для невидимости)
             Destroy(GetComponent<MeshRenderer>());
 
-
+            //отображаем взрыв
             GameObject particl =
                 Instantiate(Resources.Load("BomsbParticleSystem"),
                 gameObject.transform.position, Quaternion.identity) as GameObject;
 
 
-
+            //делаем взрыв дочерним 
             particl.transform.SetParent(gameObject.transform);
 
-            yield return new WaitForSeconds(/*0.*/5F);
+            //делаем задержку чтобы допроигрался звук
+            yield return new WaitForSeconds(0.5F);
 
+            //и удаляем объект со сцены полностью
             Destroy(gameObject);
         }
     }
