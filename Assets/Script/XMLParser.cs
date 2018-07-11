@@ -20,6 +20,11 @@ namespace Tir
         {
             //инициалзи пути к файлу
             path = Application.dataPath + "/File/DataXML.xml";
+
+            //при билде комментим предыдущий путь и разкомментим 
+            //этот но нужно забрасить файл в папке по этому пути
+
+            //path = Application.persistentDataPath + "/File/DataXML.xml";
         }
 
         private void Start()
@@ -29,15 +34,47 @@ namespace Tir
         }
 
         /// <summary>
+        /// Если нет файла
+        /// </summary>
+        public void CreaterNewFile()
+        {
+            //переназначаем путь (этот код выполниться скорее всего из - того что
+            //игра первый раз запустилась не в юнити а первый раз из билда)
+            path = Application.persistentDataPath + "/DataXML.xml";
+
+            XElement root = new XElement("root");
+
+            XAttribute attrib = new XAttribute("count", 100);
+            XElement element = new XElement("type", "Cube", attrib);
+            root.Add(element);
+
+            XAttribute attrib1 = new XAttribute("count", 500);
+            XElement element1 = new XElement("type", "Sphere", attrib1);
+            root.Add(element1);
+
+            XDocument saveDoc = new XDocument(root);
+
+            File.WriteAllText(path, saveDoc.ToString());
+
+        }
+
+        /// <summary>
         /// загрузка файла
         /// </summary>
         public void Load()
         {
             XElement root = null;
 
-            //если нет файла
+            //если нет файла (это скорее всего будет запуск игры не в юнити а билда)
             if(!File.Exists(path))
             {
+                CreaterNewFile();
+
+                //взяли корневой елемент
+                root = XDocument.Parse(File.ReadAllText(path)).Element("root");
+
+                Generate(root);
+
                 return;
             }
             else
@@ -64,7 +101,7 @@ namespace Tir
 
                 GenerateSpawn(x, s);
 
-               /// Debug.Log(x + " - " + s + " **** ");
+                /// Debug.Log(x + " - " + s + " **** ");
             }
         }
 
@@ -86,21 +123,26 @@ namespace Tir
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Cube;
                 Spawn.GetComponent<Spawner>().count = x;
+                Spawn.GetComponent<Spawner>().SetImg(EPlayerObject.Cube);
             }
             if(s == EPlayerObject.Capsule.ToString())
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Capsule;
                 Spawn.GetComponent<Spawner>().count = x;
+                Spawn.GetComponent<Spawner>().SetImg(EPlayerObject.Capsule);
             }
             if(s == EPlayerObject.Cylinder.ToString())
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Cylinder;
                 Spawn.GetComponent<Spawner>().count = x;
+                Spawn.GetComponent<Spawner>().SetImg(EPlayerObject.Cylinder);
+
             }
             if(s == EPlayerObject.Sphere.ToString())
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Sphere;
                 Spawn.GetComponent<Spawner>().count = x;
+                Spawn.GetComponent<Spawner>().SetImg(EPlayerObject.Sphere);
             }
 
             //вставляем в контент UI

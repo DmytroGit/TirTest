@@ -62,12 +62,15 @@ namespace Tir
         }
 
 
-        public void SetImg()
+        public void SetImg(EPlayerObject ePlayerObject)
         {
             // GameObject Panelika = Instantiate(Resources.Load("x"), Vector3.zero, Quaternion.identity) as GameObject;
             //GetComponent<Image>().color =  Color.red;
-            image.color = Color.red;
+            //image.color = color;
+            image.sprite= Resources.Load<Sprite>(ePlayerObject.ToString());
             //image.sprite = image1;
+
+            //image.GetComponent<Image>().sprite = Resources.Load<Sprite>("Cube1");
         }
 
         /// <summary>
@@ -82,24 +85,25 @@ namespace Tir
             if(ePlayerObject == EPlayerObject.Cube)
             {
                 //загркжаем объект и инстниэйтим
-                loadGameObject = Instantiate(Resources.Load("Cube"), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
+                loadGameObject = Instantiate(Resources.Load<GameObject>(EPlayerObject.Cube.ToString()), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
 
                 //устанавливаем приз-значение (когда объект взорвется то это значение нам зачислится)
                 loadGameObject.GetComponent<PlayerObject>().SetCount(c);
+                
             }
             if(ePlayerObject == EPlayerObject.Capsule)
             {
-                loadGameObject = Instantiate(Resources.Load("Capsule"), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
+                loadGameObject = Instantiate(Resources.Load<GameObject>(EPlayerObject.Capsule.ToString()), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
                 loadGameObject.GetComponent<PlayerObject>().SetCount(c);
             }
             if(ePlayerObject == EPlayerObject.Cylinder)
             {
-                loadGameObject = Instantiate(Resources.Load("Cylinder"), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
+                loadGameObject = Instantiate(Resources.Load<GameObject>(EPlayerObject.Cylinder.ToString()), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
                 loadGameObject.GetComponent<PlayerObject>().SetCount(c);
             }
             if(ePlayerObject == EPlayerObject.Sphere)
             {
-                loadGameObject = Instantiate(Resources.Load("Sphere"), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
+                loadGameObject = Instantiate(Resources.Load<GameObject>(EPlayerObject.Sphere.ToString()), gameObjectTramsform.transform.position, Quaternion.identity) as GameObject;
                 loadGameObject.GetComponent<PlayerObject>().SetCount(c);
             }
         }
