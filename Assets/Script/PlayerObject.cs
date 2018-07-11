@@ -155,7 +155,7 @@ namespace Tir
             particl.transform.SetParent(gameObject.transform);
 
             //делаем задержку чтобы допроигрался звук
-            yield return new WaitForSeconds(0.5F);
+            yield return new WaitForSeconds(5F);
 
             //и удаляем объект со сцены полностью
             Destroy(gameObject);
