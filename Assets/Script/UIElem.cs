@@ -14,6 +14,5 @@ namespace Tir
         {
             text.text = DataStatic.CountUser.ToString();
         }
-
     }
 }

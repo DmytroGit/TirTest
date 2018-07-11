@@ -57,27 +57,24 @@ namespace Tir
         {
             GameObject Spawn = Instantiate(Resources.Load("Spawn"), Vector3.zero, Quaternion.identity) as GameObject;
 
-            Spawn.GetComponent<Panelika>().SetText(x);
+            Spawn.GetComponent<Spawner>().SetText(x);
 
             if(s == "Cube")
             {
-                Spawn.GetComponent<Panelika>().ePlayerObject = EPlayerObject.Cube;
+                Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Cube;
             }
             if(s == "Capsule")
             {
-                Spawn.GetComponent<Panelika>().ePlayerObject = EPlayerObject.Capsule;
+                Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Capsule;
             }
             if(s == "Cylinder")
             {
-                Spawn.GetComponent<Panelika>().ePlayerObject = EPlayerObject.Cylinder;
+                Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Cylinder;
             }
             if(s == "Sphere")
             {
-                Spawn.GetComponent<Panelika>().ePlayerObject = EPlayerObject.Sphere;
+                Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Sphere;
             }
-
-
-
 
             Spawn.transform.SetParent(GameObject.Find("Canvas").transform);
         }
