@@ -80,7 +80,7 @@ namespace Tir
                 Spawn.GetComponent<Spawner>().count = x;
             }
 
-            Spawn.transform.SetParent(GameObject.Find("Canvas").transform);
+            Spawn.transform.SetParent(GameObject.Find("Content").transform);
         }
     }
 }
