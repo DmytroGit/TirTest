@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!--значения 
+  Cube
+  Capsule
+  Cylinder
+  Sphere
+  
+  должны быть правильно написаны что нормально сгенерились спавнеры
+        -->
   <type count="1">Cube</type>
-  <type count="10">Sphere</type>
+  <type count="10">Cylinder</type>
+  <type count="100">Sphere</type>
 </root>
