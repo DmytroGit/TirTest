@@ -5,31 +5,53 @@ using UnityEngine.UI;
 
 namespace Tir
 {
+    /// <summary>
+    /// этот скрипт висит на генерируемых объектах (куб/шар...) и отвечает за столкновения и смерть объектов
+    /// </summary>
     public class PlayerObject : MonoBehaviour
     {
+        /// <summary>
+        /// партикл для взрыва
+        /// </summary>
         [SerializeField]
         GameObject partile;
 
+        /// <summary>
+        /// тип объекта   оно будет меняться из другого скрипта
+        /// </summary>
         public EPlayerObject ePlayerObject;
 
+        /// <summary>
+        /// флаг , новосоздающийся объект или нет
+        /// </summary>
         [HideInInspector]
         public bool isNew = true;
 
+        /// <summary>
+        /// для префаба Wow
+        /// </summary>
         [SerializeField]
         GameObject textObj;
 
+        /// <summary>
+        /// сколько очков за обект  оно будет меняться из другого скрипта
+        /// </summary>
         [SerializeField]
-        int count = 1;
-        //private void Awake()
-        //{
-        //    //BroadcastMessage("SetISNew");
-        //}
+        int count = 0;
 
+        /// <summary>
+        /// для изменения очков приза
+        /// </summary>
+        /// <param name="c"></param>
         public void SetCount(int c)
         {
             count = c;
         }
 
+        /// <summary>
+        /// отслеживает колизию (триггер)
+        /// </summary>
+        /// <param name="other"></param>
         private void OnTriggerEnter(Collider other)
         {
             if(isNew == false)
@@ -74,41 +96,17 @@ namespace Tir
             }
         }
 
-        //public void DDD()
-        //{
-        //    Debug.Log("ertert");
-        //}
-
+        /// <summary>
+        /// установка новизны объекта
+        /// </summary>
         public void SetISNew()
         {
             isNew = false;
         }
 
-
-        //private void OnCollisionEnter(Collision collision)
-        //{
-
-        //}
-
-        //private void OnCollisionStay(Collision collision)
-        //{
-        //    if(collision.gameObject.GetComponent<PlayerObject>().ePlayerObject == this.ePlayerObject)
-        //    {
-        //        collision.gameObject.GetComponent<PlayerObject>().Death();
-        //    }
-        //}
-        private void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                //GameObject partidddcl =
-                // Instantiate(Resources.Load("TextWow"),
-                // gameObject.transform.position, Quaternion.identity) as UIElem;
-
-            }
-
-        }
-
+        /// <summary>
+        /// перевызов смерти при вылете объекта
+        /// </summary>
         public void DeathAnimation()
         {
             StartCoroutine(IDeathAnimation());
@@ -121,24 +119,29 @@ namespace Tir
             Destroy(gameObject);
         }
 
+        /// <summary>
+        /// перевызов корутины смерти
+        /// </summary>
         public void Death()
         {
             StartCoroutine(IDeath());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator IDeath()
         {
+            //зачсляем очки
             DataStatic.SetCountUser(count);
-            Debug.Log("456456");
+
             GetComponent<AudioSource>().Play();
 
             Destroy(GetComponent<Collider>());
-            //Destroy(GetComponent<PlayerObject>());
+
             Destroy(GetComponent<MeshRenderer>());
 
-            /*if(Input.GetKeyDown(KeyCode.Space))
-            {*/
-            //Debug.Log("1");
 
             GameObject particl =
                 Instantiate(Resources.Load("BomsbParticleSystem"),
@@ -147,8 +150,6 @@ namespace Tir
 
 
             particl.transform.SetParent(gameObject.transform);
-            //Debug.Log("2");
-            /* }*/
 
             yield return new WaitForSeconds(/*0.*/5F);
 
@@ -156,6 +157,9 @@ namespace Tir
         }
     }
 
+    /// <summary>
+    /// типы объектов
+    /// </summary>
     public enum EPlayerObject
     {
         Cube = 0,

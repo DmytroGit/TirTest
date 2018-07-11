@@ -6,12 +6,19 @@ using UnityEngine;
 
 namespace Tir
 {
+    /// <summary>
+    /// Парсит XML файл
+    /// </summary>
     public class XMLParser : MonoBehaviour
     {
+        /// <summary>
+        /// переменная для  пути к файлу
+        /// </summary>
         string path;
 
         private void Awake()
         {
+            //инициалзи пути к файлу
             path = Application.dataPath + "/File/DataXML.xml";
         }
 
@@ -21,44 +28,60 @@ namespace Tir
             Load();
         }
 
+        /// <summary>
+        /// загрузка файла
+        /// </summary>
         public void Load()
         {
             XElement root = null;
 
+            //если нет файла
             if(!File.Exists(path))
             {
                 return;
             }
             else
             {
+                //взяли корневой елемент
                 root = XDocument.Parse(File.ReadAllText(path)).Element("root");
+
                 Generate(root);
                 //Debug.Log(root);
             }
         }
 
+        /// <summary>
+        /// парсинг корневого элемента
+        /// </summary>
+        /// <param name="root"></param>
         public void Generate(XElement root)
         {
-
             foreach(XElement instance in root.Elements("type"))
             {
                 int x = int.Parse(instance.Attribute("count").Value);
 
                 string s = instance.Value;
 
-                TestImg(x, s);
+                GenerateSpawn(x, s);
 
-                Debug.Log(x + " - " + s + " **** ");
+               /// Debug.Log(x + " - " + s + " **** ");
             }
         }
 
-        //////////////////////////
-        public void TestImg(int x, string s)
+        /// <summary>
+        /// генерим "кнопки - спавнер" и вставляем в контент UI
+        /// </summary>
+        /// <param name="x">значение - приз</param>
+        /// <param name="s">тип (куб/сфера/цилиндр ...)</param>
+        public void GenerateSpawn(int x, string s)
         {
+            //загружаем кнопку - спавнер
             GameObject Spawn = Instantiate(Resources.Load("Spawn"), Vector3.zero, Quaternion.identity) as GameObject;
 
+            //настройка спавнера
             Spawn.GetComponent<Spawner>().SetText(x);
 
+            //выбираем что  будем спавнером генерить
             if(s == "Cube")
             {
                 Spawn.GetComponent<Spawner>().ePlayerObject = EPlayerObject.Cube;
@@ -80,7 +103,8 @@ namespace Tir
                 Spawn.GetComponent<Spawner>().count = x;
             }
 
-            Spawn.transform.SetParent(GameObject.Find("Content").transform);
+            //вставляем в контент UI
+            Spawn.transform.SetParent(GameObject.Find("ContentLV").transform);
         }
     }
 }

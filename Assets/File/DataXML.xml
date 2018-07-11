@@ -2,6 +2,4 @@
 <root>
   <type count="1">Cube</type>
   <type count="10">Sphere</type>
-  <type count="500">Capsule</type>
-  <type count="6000">Sphere</type>
 </root>
