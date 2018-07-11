@@ -48,5 +48,11 @@ namespace Tir
                 Debug.Log(x + " - " + s + " **** ");
             }
         }
+
+        //////////////////////////
+        public void TestImg()
+        {
+
+        }
     }
 }
